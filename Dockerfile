@@ -3,12 +3,10 @@
 # VERSION               0.1
 #
 
-FROM ubuntu
-MAINTAINER Resilio Inc. <support@resilio.com>
-LABEL com.resilio.version="2.5.6"
+FROM resin/rpi-raspbian:latest 
 
-ADD https://download-cdn.resilio.com/2.5.6/linux-x64/resilio-sync_x64.tar.gz /tmp/sync.tgz
-RUN tar -xf /tmp/sync.tgz -C /usr/bin rslsync && rm -f /tmp/sync.tgz
+ADD https://download-cdn.resilio.com/2.5.6/linux-armhf/resilio-sync_armhf.tar.gz /tmp/sync
+RUN cp /tmp/sync/rslsync /usr/bin/rslsync && rm -rf /tmp/sync
 
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
