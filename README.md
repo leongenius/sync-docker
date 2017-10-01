@@ -18,6 +18,11 @@ Sync uses peer-to-peer technology to provide fast, private file sharing for team
 
 Go to localhost:$WEBUI_PORT in a web browser to access the webui.
 
+#### Run docker container as service
+    sudo /usr/bin/docker create -it -v /data:/mnt/sync --name=resilio-sync -p 8888/tcp -p 55555:55555/tcp -p 55555:55555/udp leongenius/resilio-sync-raspbian:latest
+    sudo cp resilio-sync.service /etc/systemd/system
+    sudo systemctl enable resilio-sync
+
 #### LAN access
 
 If you do not want to limit the access to the webui to localhost, run instead:
