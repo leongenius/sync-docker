@@ -1,0 +1,12 @@
+[Unit]
+Description=Resilio Sync
+After=docker.service
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run -t --rm -v /data:/mnt/sync --name=resilio-sync -p 8888/tcp -p 55555:55555/tcp -p 55555:55555/udp leongenius/resilio-sync-raspbian:latest
+ExecStop=/usr/bin/docker stop -t 10 resilio-sync
+
+[Install]
+WantedBy=Multi-user.target
